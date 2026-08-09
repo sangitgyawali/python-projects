@@ -28,7 +28,7 @@ questions = [
 
 score = 0
 
-print("===== QUIZ APP =====")
+print("===== QUIZ APP USING PYTHON =====")
 
 for i, q in enumerate(questions, start=1):
     print(f"\nQuestion {i}: {q['question']}")

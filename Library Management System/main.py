@@ -167,3 +167,37 @@ class Book:
 
         return book
 
+class Member:
+
+    def __init__(
+        self,
+        member_id,
+        name,
+        phone,
+        email,
+        address
+    ):
+        self.id = member_id
+        self.name = name
+        self.phone = phone
+        self.email = email
+        self.address = address
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "phone": self.phone,
+            "email": self.email,
+            "address": self.address
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            data["id"],
+            data["name"],
+            data["phone"],
+            data["email"],
+            data["address"]
+        )

@@ -118,3 +118,52 @@ def generate_id(items, prefix):
             json.dump(data, file, indent=4)
 
         print("\nData saved successfully.")
+
+class Book:
+
+    def __init__(
+        self,
+        book_id,
+        title,
+        author,
+        category,
+        year,
+        quantity
+    ):
+        self.id = book_id
+        self.title = title
+        self.author = author
+        self.category = category
+        self.year = year
+        self.quantity = quantity
+        self.available = quantity
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "author": self.author,
+            "category": self.category,
+            "year": self.year,
+            "quantity": self.quantity,
+            "available": self.available
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        book = cls(
+            data["id"],
+            data["title"],
+            data["author"],
+            data["category"],
+            data["year"],
+            data["quantity"]
+        )
+
+        book.available = data.get(
+            "available",
+            data["quantity"]
+        )
+
+        return book
+

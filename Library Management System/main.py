@@ -76,3 +76,45 @@ def generate_id(items, prefix):
     next_number = max(numbers, default=0) + 1
 
     return f"{prefix}{next_number:03d}"
+
+    class DataManager:
+
+    def __init__(self, filename):
+        self.filename = filename
+
+    def default_data(self):
+        return {
+            "books": [],
+            "members": [],
+            "loans": [],
+            "transactions": []
+        }
+
+    def load_data(self):
+        if not os.path.exists(self.filename):
+            return self.default_data()
+
+        try:
+            with open(self.filename, "r", encoding="utf-8") as file:
+                data = json.load(file)
+
+            # Make sure required keys exist
+            default = self.default_data()
+
+            for key in default:
+                if key not in data:
+                    data[key] = default[key]
+
+            return data
+
+        except json.JSONDecodeError:
+            print("Warning: Data file is corrupted.")
+            print("Starting with empty database.")
+
+            return self.default_data()
+
+    def save_data(self, data):
+        with open(self.filename, "w", encoding="utf-8") as file:
+            json.dump(data, file, indent=4)
+
+        print("\nData saved successfully.")

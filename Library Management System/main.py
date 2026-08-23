@@ -201,3 +201,46 @@ class Member:
             data["email"],
             data["address"]
         )
+
+class Loan:
+
+    def __init__(
+        self,
+        loan_id,
+        book_id,
+        member_id,
+        borrow_date,
+        due_date,
+        return_date=None,
+        fine=0
+    ):
+        self.id = loan_id
+        self.book_id = book_id
+        self.member_id = member_id
+        self.borrow_date = borrow_date
+        self.due_date = due_date
+        self.return_date = return_date
+        self.fine = fine
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "book_id": self.book_id,
+            "member_id": self.member_id,
+            "borrow_date": self.borrow_date,
+            "due_date": self.due_date,
+            "return_date": self.return_date,
+            "fine": self.fine
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            data["id"],
+            data["book_id"],
+            data["member_id"],
+            data["borrow_date"],
+            data["due_date"],
+            data.get("return_date"),
+            data.get("fine", 0)
+        )

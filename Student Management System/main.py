@@ -13,3 +13,13 @@ def add_student():
 
     students.append(student)
     print("Student added successfully!")
+
+def show_students():
+    if len(students) == 0:
+        print("No students found.")
+    return
+
+    print("\n--- Student List ---")
+
+    for i, student in enumerate(student, start=1):
+        print(f"{i}. {student['name']} | Age: {student['age']} | Grade: {student['grade']}")

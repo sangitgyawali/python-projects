@@ -23,3 +23,16 @@ def show_students():
 
     for i, student in enumerate(student, start=1):
         print(f"{i}. {student['name']} | Age: {student['age']} | Grade: {student['grade']}")
+
+def search_students():
+    name = input("Enter student name to search:")
+
+    for student in students:
+        if student["name"].lower() == name.lower():
+            print("\nStudent found!")
+            print("Name:", student["name"])
+            print("Age:", student["age"])
+            print("Grade:", student["grade"])
+            return 
+
+    print("Student not found.")

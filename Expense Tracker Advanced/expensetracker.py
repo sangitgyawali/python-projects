@@ -29,3 +29,10 @@ def show_expenses():
             f"{expense['category']}"
         )
         )
+
+def show_total():
+    total = 0
+    for expense in expenses:
+        total = total + expense["amount"]
+
+    print(f"Total spending: Rs. {total}")
